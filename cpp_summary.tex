@@ -1,0 +1,217 @@
+\documentclass[a4paper, 12pt, titlepage]{scrartcl} %document type
+\usepackage[utf8]{inputenc} %encoding
+\usepackage[T1]{fontenc}    
+\usepackage[english]{babel} %language
+
+\usepackage{graphicx}
+
+\titlehead{\centering\includegraphics[width=6cm]{cpp}}
+\title{cpp\_summary}
+\author{}
+\date{August 31, 2020 - \today}
+\publishers{Ewan Carree}
+
+%manage cells in tables
+\usepackage{makecell}
+
+%manage colors
+\usepackage{xcolor}
+%\usepackage{color}
+
+%New colors defined below
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+% add code
+\usepackage{listings}
+%Code listing style named "mystyle"
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},   commentstyle=\color{codegray},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{black},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,         
+  breaklines=true,                 
+  captionpos=b,                    
+  keepspaces=true,                 
+  numbers=left,                    
+  numbersep=5pt,                  
+  showspaces=false,                
+  showstringspaces=false,
+  showtabs=false,                  
+  tabsize=4
+}
+%"mystyle" code listing set
+\lstset{style=mystyle}
+
+%\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} 
+
+%extern and intern links
+\usepackage{hyperref} %links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    linktoc=all
+}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+\section{C++ reserved words}
+In cpp, there are some reserved words that you can't use in your program as variables, function name, class name, ...
+
+\vspace{35mm}
+
+\begin{table}[h]
+\begin{center}
+{\renewcommand{\arraystretch}{2} %space between lines%
+{\setlength{\tabcolsep}{1.5cm} %space between columns%
+\begin{tabular}{|l|c|r|}
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline 
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline 
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hline
+\end{tabular}}}
+\end{center}
+\caption{Reserved words}
+\end{table} \vspace{5mm}
+
+
+
+\clearpage
+\section{Types}
+
+\subsection{Bool}
+\subsection{Char}
+\subsection{Int}
+\subsection{Unsigned int}
+\subsection{Double}
+\subsection{String}
+
+\newpage
+\section{Variable}
+
+\subsection{Reference}
+
+\subsection{Const}
+The \textbf{const} keyword specifies that a variable's value is constant and tells the compiler to prevent the programmer from modifying it. \textbf{type const my\_variable}. \textit{const applies on the element on the left side if there is one, otherwise on the rigth}.
+
+\begin{lstlisting}[language=C++]
+type const my_variable;
+\end{lstlisting} \vspace{5mm}
+
+You can also use a precompiler method with \textbf{\#define} to specify that a variable is going to be constant the whole time. It's especially use for real world constant like \textit{pi}, \textit{e}, ...
+
+\begin{lstlisting}[language=C++]
+#define Pi 3.141592
+\end{lstlisting} \vspace{5mm}
+
+
+\subsection{Reference}
+In c++ you can use reference to save memory and gain in efficiency. A reference on a variable is another variable that contains the memory address of the first variable. You can create a reference by using \textbf{\&}.
+
+\vspace{5mm}
+
+Here is an example of how to use reference :
+\begin{lstlisting}[language=C++]
+int my_variable = 10;
+int & my_reference = my_variable;
+std::cout << "Here is my_variable : " << my_variable << " and here is my_reference : " << my_reference << std::endl;
+
+// Here is my_variable : 10 and here is my_reference : 10
+\end{lstlisting} \vspace{5mm}
+
+
+\newpage
+\section{Function}
+A function is a block of organized, reusable code that is used to perform a single, related action. Functions provide better modularity for your application and a high degree of code reusing.
+
+In c++, a function is created based on this model :
+
+\begin{lstlisting}[language=C++]
+function_type
+display(argument_type argument)
+{
+  //core
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Default arguments}
+Default arguments are used for arguments that don't necessarily need a value. We assign a default value that can be overloaded if needed. Default arguments are always declared after non-default arguments into function's head. 
+
+\subsection{Templates}
+Function templates are special functions that can operate with generic types. This allows us to create a function template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.
+
+\newpage
+\section{Struct}
+
+\newpage
+\section{Class}
+Classes are a way of bringing together data and functionality. Creating a new class creates a new type and so new instances of this type can be built.
+
+\newpage
+\section{Toolbox}
+
+\subsection{Increment and decrement}
+You can simply increment and decrement your variables by using \textbf{++} or \textbf{--}.
+
+\subsection{Flows}
+There are three different flows in c++, one for text that the user enter while the program is running, one for the classic output for the program and one for the error output if there is a problem inside the program while it's running.
+
+\vspace{5mm}
+
+Here is an example of how to use them properly :
+\begin{lstlisting}[language=C++]
+std::string my_variable;
+std::cin >> my_variable;
+std::cout << my_variable << std::endl;
+std::cerr << "We've got a problem Houston" << std::endl;
+
+// 10
+// 10
+// We've got a problem Houston
+\end{lstlisting} \vspace{5mm}
+
+\textbf{WARNING} : You have to handle spaces if you use \textit{cin} flow because it doesn't take in account the spaces.
+
+The last code become :
+\begin{lstlisting}[language=C++]
+std::string my_variable;
+std::getline(std::cin, my_variable);
+std::cout << my_variable << std::endl;
+std::cerr << "We've got a problem Houston" << std::endl;
+
+// Hello, world!
+// Hello, world!
+// We've got a problem Houston
+\end{lstlisting} \vspace{5mm}
+
+\textbf{WARNING} : If you use std::cin then getline() in your code, it won't work. You have to use \textit{std::cin.ignore()} after each std::cin you might use.
+
+
+\subsection{Files}
+
+\end{document}

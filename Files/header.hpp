@@ -7,8 +7,35 @@
 #include <iostream>
 #include <utility> // std::move()
 
-namespace cpp
+namespace oc
+{
+	void reference();
+	void flows();
+} //oc
+
+namespace basics
 {
 
-} //cpp
+} //basics
+
+namespace sharing
+{
+
+} //sharing
+
+namespace structs
+{
+
+} //structs
+
+namespace generic
+{
+
+} //generic
+
+namespace alloc
+{
+
+} //alloc
+
 #endif //HEADER_HPP

@@ -6,8 +6,10 @@
 
 #include "header.hpp"
 
+
 int main(int argc, char const *argv[])
 {
-	/* code */
+	//oc::reference();
+	oc::flows();
 	return 0;
 }

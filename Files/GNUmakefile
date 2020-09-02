@@ -19,7 +19,7 @@ wasm=0
 # if LIB_TARGET is provided, this library will be built (with its
 # platform-specific name), otherwise ${EXE_PREFIX}* programs will be built
 LIB_TARGET=
-EXE_PREFIX=prog
+EXE_PREFIX=cpp_summary
 
 #~~~~ detect operating system ~~~~
 ifneq (${OS},Windows_NT)
