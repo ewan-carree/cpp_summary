@@ -10,6 +10,7 @@
 int main(int argc, char const *argv[])
 {
 	//oc::reference();
-	oc::flows();
+	//oc::flows();
+	oc::conditions();
 	return 0;
 }
