@@ -11,6 +11,7 @@ int main(int argc, char const *argv[])
 {
 	//oc::reference();
 	//oc::flows();
-	oc::conditions();
+	//oc::conditions();
+	oc::loop();
 	return 0;
 }

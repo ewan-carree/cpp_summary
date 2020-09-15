@@ -64,6 +64,71 @@ namespace oc
 		{
 			std::cout << "You are 20 years old or you don't exist" << std::endl;
 		}
+	}
+
+	void loop()
+	{
+		bool condition = true;
+		int i=0;
+		while (condition)
+		{
+
+			if (i < 4)
+			{
+				if (i < 3)
+				{
+					std::cout << i << '-';
+				}
+				else
+				{
+					std::cout << i << std::endl;
+				}
+				
+			}
+			else
+			{
+				condition = false;
+			}
+			i+=1; 
+		}
+
+		condition = true;
+		do
+		{
+		    std::cout << "I enter in DO" << std::endl;
+		} while (!condition);
+
+
+		for (int counter = 0 ; counter < 10 ; counter++)
+		{
+			if (counter < 9)
+			{
+				std::cout << counter << '-';
+			}
+			else
+			{
+				std::cout << counter << std::endl;
+			}
+			
+		}
+
+		std::string my_string = "Hello, world!";
+
+		for(const auto & elem : my_string)
+		{
+			char basic_end_line = '-';
+			if (elem != my_string[my_string.size()-1])
+			{
+				std::cout << elem << basic_end_line;
+			}
+			else
+			{
+				std::cout << elem << std::endl;
+			}
+			
+		}
+
+
 
 	}
 } //oc

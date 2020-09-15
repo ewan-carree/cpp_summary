@@ -12,6 +12,7 @@ namespace oc
 	void reference();
 	void flows();
 	void conditions();
+	void loop();
 } //oc
 
 namespace basics
