@@ -13,6 +13,7 @@ namespace oc
 	void flows();
 	void conditions();
 	void loop();
+	void default_argument(std::string name = "None");
 } //oc
 
 namespace basics

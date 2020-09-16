@@ -127,9 +127,11 @@ namespace oc
 			}
 			
 		}
+	}
 
-
-
+	void default_argument(std::string name)
+	{
+		std::cout << "I received this name : " << name << std::endl;
 	}
 } //oc
 
