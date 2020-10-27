@@ -13,7 +13,8 @@ int main(int argc, char const *argv[])
 	//oc::flows();
 	//oc::conditions();
 	//oc::loop();
-	oc::default_argument("Ewan");
-	oc::default_argument();
+	//oc::default_argument("Ewan");
+	//oc::default_argument();
+	oc::pointer();
 	return 0;
 }

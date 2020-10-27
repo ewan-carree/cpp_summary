@@ -133,6 +133,16 @@ namespace oc
 	{
 		std::cout << "I received this name : " << name << std::endl;
 	}
+
+	void pointer()
+	{
+		    int age = 16;
+		    int *ptr(0);
+		    ptr = &age;
+
+		    std::cout << "address age : " << &age << ", address pointer on age : " << ptr << ", value of age : " << age << ", value pointed : " << *ptr << std::endl;
+		    
+	}
 } //oc
 
 namespace basics

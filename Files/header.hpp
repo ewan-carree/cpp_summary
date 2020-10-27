@@ -14,6 +14,7 @@ namespace oc
 	void conditions();
 	void loop();
 	void default_argument(std::string name = "None");
+	void pointer();
 } //oc
 
 namespace basics
