@@ -15,6 +15,23 @@ namespace oc
 	void loop();
 	void default_argument(std::string name = "None");
 	void pointer();
+	void constructor();
+
+	class Person
+	{
+		private:
+		std::string name;
+		int age;
+
+		public:
+		Person();
+		Person(std::string name, int age);
+		~Person();
+
+		int get_age() const;
+	};
+
+	
 } //oc
 
 namespace basics

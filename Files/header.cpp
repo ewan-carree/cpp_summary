@@ -143,6 +143,19 @@ namespace oc
 		    std::cout << "address age : " << &age << ", address pointer on age : " << ptr << ", value of age : " << age << ", value pointed : " << *ptr << std::endl;
 		    
 	}
+
+	Person::Person() : name("Jean"), age(10) {}
+	Person::Person(std::string name, int age) : name(name), age(age) {}
+
+	Person::~Person()
+	{
+		std::cout << "object deleted" << std::endl;
+	}
+
+	int Person::get_age() const
+	{
+		return age;
+	}
 } //oc
 
 namespace basics
