@@ -144,18 +144,92 @@ namespace oc
 		    
 	}
 
+	void class_person()
+	{
+		Person p("Juan", 20);
+		std::cout << p.get_age() << std:: endl;
+	}
+
 	Person::Person() : name("Jean"), age(10) {}
 	Person::Person(std::string name, int age) : name(name), age(age) {}
 
 	Person::~Person()
 	{
-		std::cout << "object deleted" << std::endl;
+		std::cout << "Object deleted" << std::endl;
 	}
 
 	int Person::get_age() const
 	{
 		return age;
 	}
+
+	void operators()
+	{
+		XYZ a{}, b{1,1,1};
+		auto c = a + b;
+		auto result = a == b;
+		std::cout << result << std::endl;
+		std::cout << c << std::endl;
+		c += a;
+		std::cout << c << std::endl;
+	}
+
+	XYZ::XYZ() : x(10), y(10), z(10) 
+	{
+
+	}
+
+	XYZ::XYZ(int x, int y, int z) : x(x), y(y), z(z) 
+	{
+
+	}
+
+	int XYZ::get_x() const
+	{
+		return x;
+	}
+
+	int XYZ::get_y() const
+	{
+		return y;
+	}
+
+	int XYZ::get_z() const
+	{
+		return z;
+	}
+
+	XYZ operator+(XYZ const& a, XYZ const& b)
+	{
+		return XYZ(a.get_x() + b.get_x(), a.get_y() + b.get_y(), a.get_z() + b.get_z());
+	}
+
+	bool operator==(XYZ const& a, XYZ const& b)
+	{
+		return (a.get_x() == b.get_x() && a.get_y() == b.get_y() && a.get_z() == b.get_z());
+	}
+
+	XYZ& XYZ::operator+=(const XYZ& b)
+	{
+		x += b.x;
+		y += b.y;
+		z += b.z;
+
+		return *this;
+	}
+
+	std::ostream& operator<<(std::ostream& os, const XYZ& n)
+	{
+		os << "(";
+		os << n.get_x();
+		os << ';';
+		os << n.get_y();
+		os << ';';
+		os << n.get_z();
+		os << ")";
+		return os;
+	}
+
 } //oc
 
 namespace basics

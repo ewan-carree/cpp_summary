@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
 	//oc::default_argument("Ewan");
 	//oc::default_argument();
 	//oc::pointer();
-	oc::Person p("Juan", 20);
-	std::cout << p.get_age() << std:: endl;
+	//oc::class_person();
+	oc::operators();
 	return 0;
 }

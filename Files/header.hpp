@@ -15,21 +15,45 @@ namespace oc
 	void loop();
 	void default_argument(std::string name = "None");
 	void pointer();
-	void constructor();
+	void class_person();
+	void operators();
 
 	class Person
 	{
-		private:
+	private:
 		std::string name;
 		int age;
 
-		public:
+	public:
 		Person();
 		Person(std::string name, int age);
 		~Person();
 
 		int get_age() const;
 	};
+
+	class XYZ
+	{
+	private:
+		int x;
+		int y;
+		int z;
+
+	public:
+		XYZ();
+		XYZ(int x, int y, int z);
+
+		int get_x() const;
+		int get_y() const;
+		int get_z() const;
+
+		XYZ& operator+=(const XYZ& b);
+
+	};
+
+	XYZ operator+(XYZ const& a, XYZ const& b);
+	bool operator==(XYZ const& a, XYZ const& b);
+	std::ostream& operator<<(std::ostream& os, const XYZ& n);
 
 	
 } //oc
