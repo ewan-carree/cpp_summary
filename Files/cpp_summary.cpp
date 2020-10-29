@@ -17,6 +17,7 @@ int main(int argc, char const *argv[])
 	//oc::default_argument();
 	//oc::pointer();
 	//oc::class_person();
-	oc::operators();
+	//oc::operators();
+	oc::inheritance();
 	return 0;
 }

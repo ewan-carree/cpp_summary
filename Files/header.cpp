@@ -163,6 +163,11 @@ namespace oc
 		return age;
 	}
 
+	std::string Person::get_name() const
+	{
+		return name;
+	}
+
 	void operators()
 	{
 		XYZ a{}, b{1,1,1};
@@ -229,6 +234,35 @@ namespace oc
 		os << ")";
 		return os;
 	}
+
+	std::ostream& operator<<(std::ostream& os, const Person& n)
+	{
+		os << n.get_name() << " is " << n.get_age() << std::endl;
+		return os;
+	}
+
+	std::ostream& operator<<(std::ostream& os, const Student& n)
+	{
+		os << n.get_name() << " is " << n.get_age() << " and the classroom is " << n.get_grade() << std::endl;
+		return os;
+	}
+
+
+	void inheritance()
+	{
+		Student s, s1{"Juan", 15, "BAC+2"};
+		std::cout << s1 << std::endl;
+	}
+
+	Student::Student() : Person::Person("Ewan", 20), grade("Bac+3") {}
+
+	Student::Student(std::string name, int age, std::string grade) : Person::Person(name, age), grade(grade) {}
+	
+	std::string Student::get_grade() const
+	{
+		return grade;
+	}
+
 
 } //oc
 
