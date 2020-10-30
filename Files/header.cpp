@@ -296,6 +296,16 @@ namespace oc
 		Student::description();
 	}
 
+	void secret(Student& s)
+	{
+		std::cout << "Secret attribute - " << s.grade << std::endl;
+ 	}
+
+	void friend_method()
+	{
+		Student a;
+		secret(a);
+	}
 
 } //oc
 

@@ -20,6 +20,7 @@ int main(int argc, char const *argv[])
 	//oc::operators();
 	//oc::inheritance();
 	// oc::virtual_method();
-	oc::static_method();
+	//oc::static_method();
+	oc::friend_method();
 	return 0;
 }

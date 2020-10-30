@@ -35,6 +35,8 @@ namespace oc
 			virtual void presentation() const;
 	};
 
+	std::ostream& operator<<(std::ostream& os, const Person& n);
+
 	class XYZ
 	{
 		private:
@@ -61,6 +63,7 @@ namespace oc
 	{
 		private:
 			std::string grade;
+			friend void secret(Student& s);
 
 		public:
 			Student();
@@ -76,6 +79,8 @@ namespace oc
 	void virtual_method();
 
 	void static_method();
+	void friend_method();
+
 } //oc
 
 namespace basics
