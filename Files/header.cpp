@@ -263,6 +263,39 @@ namespace oc
 		return grade;
 	}
 
+	void Student::presentation() const
+	{
+		std::cout << "Student - " << *this << std::endl;
+	}
+
+	void Person::presentation() const
+	{
+		std::cout << "Person - " << *this <<  std::endl;
+	}
+
+	void display(Person const& p)
+	{
+		p.presentation();
+	}
+
+	void virtual_method()
+	{
+		Person p;
+		Student s;
+		display(p);
+		display(s);
+	}
+
+	void Student::description()
+	{
+		std::cout << "A student is inside the school" << std::endl;
+	}
+
+	void static_method()
+	{
+		Student::description();
+	}
+
 
 } //oc
 

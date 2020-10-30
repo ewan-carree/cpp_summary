@@ -32,6 +32,7 @@ namespace oc
 
 			int get_age() const;
 			std::string get_name() const;
+			virtual void presentation() const;
 	};
 
 	class XYZ
@@ -66,8 +67,15 @@ namespace oc
 			Student(std::string name, int age, std::string grade);
 
 			std::string get_grade() const;
+			virtual void presentation() const;
+			static void description();
 
 	};
+
+	void display(Person const& p);
+	void virtual_method();
+
+	void static_method();
 } //oc
 
 namespace basics

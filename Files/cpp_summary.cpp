@@ -18,6 +18,8 @@ int main(int argc, char const *argv[])
 	//oc::pointer();
 	//oc::class_person();
 	//oc::operators();
-	oc::inheritance();
+	//oc::inheritance();
+	// oc::virtual_method();
+	oc::static_method();
 	return 0;
 }
