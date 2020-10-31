@@ -64,35 +64,45 @@
 \section{C++ reserved words}
 In cpp, there are some reserved words that you can't use in your program as variables, function name, class name, ...
 
-\vspace{35mm}
+\vspace{20mm}
 
 \begin{table}[h]
 \begin{center}
-{\renewcommand{\arraystretch}{2} %space between lines%
+{\renewcommand{\arraystretch}{1.75} %space between lines%
 {\setlength{\tabcolsep}{1.5cm} %space between columns%
 \begin{tabular}{|l|c|r|}
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{asm} & \hyperref[]{auto} & \hyperref[]{break} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{case} & \hyperref[]{catch} & \hyperref[]{char} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{class} & \hyperref[]{const} & \hyperref[]{continue} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{default} & \hyperref[]{delete} & \hyperref[]{do} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{double} & \hyperref[]{else} & \hyperref[]{enum} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{extern} & \hyperref[]{float} & \hyperref[]{for} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{friend} & \hyperref[]{goto} & \hyperref[]{if} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{inline} & \hyperref[]{int} & \hyperref[]{long} \\
   \hline 
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{new} & \hyperref[]{operator} & \hyperref[]{private} \\
   \hline 
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{protected} & \hyperref[]{public} & \hyperref[]{register} \\
   \hline
-  \hyperref[]{} & \hyperref[]{} & \hyperref[]{} \\
+  \hyperref[]{return} & \hyperref[]{short} & \hyperref[]{signed} \\
+  \hline
+  \hyperref[]{sizeof} & \hyperref[]{static} & \hyperref[]{struct} \\
+  \hline
+  \hyperref[]{switch} & \hyperref[]{template} & \hyperref[]{this} \\
+  \hline
+  \hyperref[]{throw} & \hyperref[]{try} & \hyperref[]{typedef} \\
+  \hline
+  \hyperref[]{union} & \hyperref[]{unsigned} & \hyperref[]{virtual} \\
+  \hline
+  \hyperref[]{void} & \hyperref[]{volatile} & \hyperref[]{while} \\
   \hline
 \end{tabular}}}
 \end{center}
@@ -110,11 +120,222 @@ In cpp, there are some reserved words that you can't use in your program as vari
 \subsection{Unsigned int}
 \subsection{Double}
 \subsection{String}
+A string is a table of char.
+\subsubsection{Concatenate}
+You can concatenate some string by using the operator \textbf{+}.
+
+\begin{lstlisting}[language=C++]
+std::string str1("Hello, ");
+std::string str2("world!");
+std::string str3;
+
+str3 = str1 + str2; // Hello, world!
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Size}
+Use \textit{my\_str.size()} to know the length of a string.
+
+\subsubsection{Erase}
+\textit{my\_str.erase()} erase all the content from a string.
+
+\subsubsection{Substr}
+Substr is very useful if you want to extract a part from a string. Use \textit{my\_str.substr(start\_index, end\_index)}, by default, \textit{end\_index} represents the last character of the string.
+
+\section{Container}
+\centering\includegraphics[width=15cm]{container}
+
+\subsection{Iterator}
+An iterator is any object that, pointing to some element in a range of elements (such as an array or a container), has the ability to iterate through the elements of that range using a set of operators (with at least the increment (++) and dereference (*) operators).
+
+\begin{lstlisting}[language=C++]
+#include<deque>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    deque<int> d(5,6);        
+    deque<int>::iterator it;  
+
+    for(it = d.begin(); it!=d.end(); ++it)
+    {
+        cout << *it << ' ';    //6 6 6 6 6
+    }
+    return 0;
+}
+\end{lstlisting} \vspace{5mm}
+
+There is a more common way to do this with a \textbf{for loop} :
+
+\begin{lstlisting}[language=C++]
+#include<deque>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    for (const auto &elem : d)
+    {
+        break;
+        cout << elem << ' ';   //6 6 6 6 6
+    }
+    return 0;
+}
+\end{lstlisting} \vspace{5mm}
+
+
+\subsection{Functor}
+A functor is any object that can be used with () in the manner of a function. \\
+This includes normal functions, pointers to functions, and class objects for which the () operator (function call operator) is overloaded.
+
+\begin{lstlisting}[language=C++]
+#include<vector>
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    class Complete{
+    public:
+        Complete(int i)
+            :value(i)
+        {}
+    
+        int operator()()
+        {
+            ++value;
+            return value;
+        }
+    
+    private:
+        int value;
+    };
+    
+    vector<int> tab(10,0);
+
+    Complete f(0);       
+
+    for(vector<int>::iterator it=tab.begin(); it!=tab.end(); ++it)
+    {
+        *it = f();
+        cout << *it << ' '; // 1 2 3 4 5 6 7 8 9 10
+    }
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Sequence}
+\subsubsection{Vector}
+Vectors are sequence containers representing arrays that can change in size. This is probably the most used container in c++. You must include the <vector> library and you can use it as follow : \textbf{std::vector<type> my\_vector(nb\_element, value\_of\_each\_element)}.
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <vector>
+ 
+int main()
+{
+    // Create a vector containing integers
+    std::vector<int> v = {7, 5, 16, 8};
+ 
+    // Add two more integers to vector
+    v.push_back(25);
+    v.push_back(13);
+ 
+    // Iterate and print values of vector
+    for(int n : v) {
+        std::cout << n << ' '; //7 5 16 8 25 13
+    }
+}
+\end{lstlisting} \vspace{5mm}
+
+You access to a specific element by using \textit{my\_vector[index]}. \\
+You have many method with the vector template. Among the most useful one you can find : front, back, empty, size, clear, insert, emplace, emplace\_back, erase, push\_back, pop\_back  and swap.
+
+\subsubsection{Deque}
+Deque is an indexed sequence container that allows fast insertion and deletion at both its beginning and its end. The storage of a deque is automatically expanded and contracted as needed. Plus, it's cheaper than a vector. You must include the <deque> library and you can use it as follow : \textbf{std::deque<type> my\_deque(nb\_element, value\_of\_each\_element)}.
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <deque>
+ 
+int main()
+{
+    // Create a deque containing integers
+    std::deque<int> d = {7, 5, 16, 8};
+ 
+    // Add an integer to the beginning and end of the deque
+    d.push_front(13);
+    d.push_back(25);
+ 
+    // Iterate and print values of deque
+    for(int n : d) {
+        std::cout << n << ' '; // 13 7 5 16 8 25
+    }
+}
+\end{lstlisting} \vspace{5mm}
+
+It's almost like vector except the fact that you can modify the front of he container. \\
+You have many method with the deque template. Among the most useful one you can find : front, back, empty, size, clear, erase, insert, emplace, emplace\_back, emplace\_front,  erase, push\_back, push\_front, pop\_back, pop\_front and swap.
+
+\subsubsection{List}
+\subsubsection{Stack}
+Stack is a container with which you can only access the top of it. You must include the <stack> library and you can use it as follow : \textbf{std::stack<type> my\_stack}.
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <stack>
+ 
+int main()
+{
+    // Create a deque containing integers
+    std::stack<int> d;
+ 
+    d.push(10);
+    d.push(11);
+    
+    std::cout << d.top(); //11
+}
+\end{lstlisting} \vspace{5mm}
+
+You have some method with the stack template. Among the most useful one you can find : top, empty, size, push, emplace, pop, swap.
+
+\subsubsection{Queue}
+Queue is a container with which you can only access the front of it. You must include the <queue> library and you can use it as follow : \textbf{std::queue<type> my\_queue}.
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <queue>
+ 
+int main()
+{
+    // Create a deque containing integers
+    std::queue<int> d;
+ 
+    d.push(10);
+    d.push(11);
+    
+    std::cout << d.front(); //10
+}
+\end{lstlisting} \vspace{5mm}
+
+You have some method with the queue template. Among the most useful one you can find : front, back, empty, size, push, emplace, pop, swap.
+
+\subsubsection{Priority queue}
+A priority queue is a container adaptor that provides constant time lookup of the largest (by default) element. You must include the <queue> library and you can use it as follow : \textbf{std::priority\_queue<type> my\_priority\_queue}.
+
+\subsection{Associative container}
+\subsubsection{Set}
+\subsubsection{Multiset}
+\subsubsection{Map}
+\subsubsection{Multimap}
 
 \newpage
 \section{Variable}
 
-\subsection{Reference}
+You can initialize your variables in two different ways :
+\begin{lstlisting}[language=C++]
+type my_variable = value;
+type my_variable(value);
+\end{lstlisting} \vspace{5mm}
 
 \subsection{Const}
 The \textbf{const} keyword specifies that a variable's value is constant and tells the compiler to prevent the programmer from modifying it. \textbf{type const my\_variable}. \textit{const applies on the element on the left side if there is one, otherwise on the rigth}.
@@ -144,6 +365,152 @@ std::cout << "Here is my_variable : " << my_variable << " and here is my_referen
 // Here is my_variable : 10 and here is my_reference : 10
 \end{lstlisting} \vspace{5mm}
 
+\subsection{Pointer}
+A pointer is a variable whose value is the address of another variable. Like any variable or constant, you must declare a pointer before you can work with it. The general form of a pointer variable declaration is \textbf{type *var-name;}. You must initialize your pointer at the value \textbf{0} which means the address 0 if you don't initialize it with a known value.
+
+\vspace{5mm}
+
+Here is an example of how to use a pointer :
+\begin{lstlisting}[language=C++]
+int age = 16;
+int *ptr(0);
+ptr = &age;
+\end{lstlisting} \vspace{5mm}
+
+You have now create your pointer. If you want to use it, then there are two ways. If you want to print the address of the variable pointed, use \textit{std::cout << ptr}, while if you want to print the variable itself, use \textit{std::cout << *ptr}. \textbf{*} is the method to \textit{dereference} you pointeur so that you can use the variable.
+
+\vspace{5mm}
+
+A pointer can be used in differnet cases. There are 3 main cases : if we want to manipulate the memory precisely, if we want a variable to be accessible in different part of the code and if we have to choose a value in some values.
+
+
+
+
+
+\newpage
+\section{Conditions}
+Conditions are used to check variables in your program.
+\begin{lstlisting}[language=C++]
+int age = 20;
+if (age == 18)
+{
+  std::cout << "You're " << age << " years old!" << std::endl;
+}
+else if (age < 18)
+{
+  std::cout << "You don't have the majority" << std::endl;
+}
+else
+{
+  std::cout << "You have the majority" << std::endl;
+}
+
+switch (age)
+{
+case 18:
+std::cout << "You're " << age << " years old!" << std::endl;
+break;
+
+case 17:
+std::cout << "You're " << age << " years old!" << std::endl;
+break;
+
+case 20:
+std::cout << "You're " << age << " years old!" << std::endl;
+break;
+
+default:
+std::cout << "You're not corresponding!" << std::endl;
+break;
+}
+
+bool person = true;
+
+if (person && age == 20)
+{
+  std::cout << "You're the right Ewan" << std:: endl;
+}
+
+if (!person || age == 20)
+{
+  std::cout << "You are 20 years old or you don't exist" << std::endl;
+}
+
+//You have the majority
+//You're 20 years old!
+//You're the right Ewan
+//You are 20 years old or you don't exist
+\end{lstlisting} \vspace{5mm}
+
+\newpage
+\section{Loop}
+Loop are a way to navigate through data contained into containers. In C++, there are many loops that can be used in different cases.
+
+\begin{lstlisting}[language=C++]
+bool condition = true;
+int i=0;
+while (condition)
+{
+
+  if (i < 4)
+  {
+    if (i < 3)
+    {
+      std::cout << i << '-';
+    }
+    else
+    {
+      std::cout << i << std::endl;
+    }
+    
+  }
+  else
+  {
+    condition = false;
+  }
+  i+=1; 
+}
+
+condition = true;
+do
+{
+    std::cout << "I enter in DO" << std::endl;
+} while (!condition);
+
+
+for (int counter = 0 ; counter < 10 ; counter++)
+{
+  if (counter < 9)
+  {
+    std::cout << counter << '-';
+  }
+  else
+  {
+    std::cout << counter << std::endl;
+  }
+  
+}
+
+std::string my_string = "Hello, world!";
+
+for(const auto & elem : my_string)
+{
+  char basic_end_line = '-';
+  if (elem != my_string[my_string.size()-1])
+  {
+    std::cout << elem << basic_end_line;
+  }
+  else
+  {
+    std::cout << elem << std::endl;
+  }
+}
+
+/*0-1-2-3
+I enter in DO
+0-1-2-3-4-5-6-7-8-9
+H-e-l-l-o-,- -w-o-r-l-d-!*/
+\end{lstlisting} \vspace{5mm}
 
 \newpage
 \section{Function}
@@ -159,21 +526,466 @@ display(argument_type argument)
 }
 \end{lstlisting} \vspace{5mm}
 
+You can use the same function name for multiple functions with different parameters to handle different cases with different parameters.
+
 \subsection{Default arguments}
 Default arguments are used for arguments that don't necessarily need a value. We assign a default value that can be overloaded if needed. Default arguments are always declared after non-default arguments into function's head. 
+
+\textbf{Warning : } the default argument is only specified into the .hpp file. 
+
+\begin{lstlisting}[language=C++]
+void default_argument(std::string name = "None");
+
+void default_argument(std::string name)
+{
+  std::cout << "I received this name : " << name << std::endl,
+}
+
+default_argument("Ewan");
+default_argument();
+
+//I received this name : Ewan
+//I received this name : None
+\end{lstlisting} \vspace{5mm}
 
 \subsection{Templates}
 Function templates are special functions that can operate with generic types. This allows us to create a function template whose functionality can be adapted to more than one type or class without repeating the entire code for each type.
 
-\newpage
-\section{Struct}
 
 \newpage
 \section{Class}
-Classes are a way of bringing together data and functionality. Creating a new class creates a new type and so new instances of this type can be built.
+Classes are a way of bringing together data and functionality. Creating a new class creates a new type and so new instances of this type can be built. You have to create new files for each class you need to create (.cpp and .hpp) with the name of the class as the name of your files and the class needs to be implemented into the .hpp file.
+
+\vspace{5mm}
+
+The prototype of a class is like this : 
+
+\begin{lstlisting}[language=C++]
+class MyClass
+{
+  //core
+};
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Struct}
+
+The prototype of a structure is almost the same than a class :
+
+\begin{lstlisting}[language=C++]
+struct MyType
+{
+  //core
+};
+\end{lstlisting} \vspace{5mm}
+
+In classes, everything is private by default, whereas in structures, everything is public.
+
+
+\subsection{Access control}
+\begin{table}[h]
+\begin{center}
+{\renewcommand{\arraystretch}{2} %space between lines%
+{\setlength{\tabcolsep}{1cm} %space between columns%
+\begin{tabular}{|c|c|c|c|}
+  \hline
+  Access & Public & Protected & Private \\
+  \hline
+  Same classes & yes & yes & yes \\
+  \hline
+  Derived classes & yes & yes & no \\
+  \hline
+  Outside classes & yes & no & no \\
+  \hline
+\end{tabular}}}
+\end{center}
+\caption{Access control}
+\end{table} \vspace{5mm}
+
+
+\subsubsection{Private}
+By default, every single element of a class is considered \textbf{private}. It means that an instance outside of the class can't access or modify an element. Every attributes from your class must be private to respect OOP.
+
+\begin{lstlisting}[language=C++]
+class MyClass
+{
+  private:
+    // private methods and attributes
+};
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Public}
+Indicate that something is public means that it can be used and modified outside of the class by each instance. You won't never put any attributes public, it's a rule that goes with OOP. We access private attributes with public getters and modify them with public setters.
+
+\begin{lstlisting}[language=C++]
+class MyClass
+{
+  public:
+    // public methods
+};
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Protected}
+Protected is situated between public and private. It has a sense only in classes and especially with inheritance. A protected attribute or method can be accessible to the child from the actual class but it won't be possible to access it outside of the class. It's good to put you attributes protected by default so that it will be easily accessed by the child class without using getters.
+
+\begin{lstlisting}[language=C++]
+class MyClass
+{
+  protected:
+    // protected methods and attributes
+};
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Constructor}
+The constructor is called each time you create a new instance from your class. It's a way to initialize each attributes from your object. A constructor doesn't have any return type.
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Person
+{
+  private:
+  std::string name;
+  int age;
+
+  public:
+  Person(); // init without parameters
+  Person(std::string name, int age); // init with parameters
+};
+
+// in cpp
+Person::Person() : name("Jean"), age(10) {}
+Person::Person(std::string name, int age) : name(name), age(age) {}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Destructor}
+The destructor is called each time you delete an object, at the end of a function or by allocation when you don't need your object anymore. A destructor doesn't have any return type. It's okay if you don't put any destructor into your class.
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Person
+{
+  private:
+  std::string name;
+  int age;
+
+  public:
+  ~Person();
+};
+
+// in cpp
+Person::~Person()
+{
+  std::cout << "object deleted" << std::endl;
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Attributes}
+An attribute is a variable that belongs to the class. It's defined into the class body and they are very often private or protected. \\
+You can create static attributes by adding \textbf{static} in front of the declaration so that they represent a variable that has the same role as a global variable. When you create an instance, you won't be able to initialize it with this static attribute. You will define this attributes inside the .cpp file as follow : \textit{type MyClass::myAttribute = value;}
+
+\subsection{Methods}
+Methods are similar to classic functions but they belongs to the class. It means that they have a relation with the class and its instances. 
+
+\subsubsection{Const Methods}
+A const method is a method that doesn't modify your object. You simply create a const methods by adding \textit{const} after the name of your method in the prototype (.hpp) as in the declaration (.cpp). It's good to put \textit{const} on each methods that doesn't modify anything to gain in efficacity.
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Person
+{
+  private:
+  std::string name;
+  int age;
+
+  public:
+  int get_age() const;
+};
+
+// in cpp
+int Person::get_age() const
+{
+  return age;
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Virtual method}
+Virtual methods are used to get rid of inheritance problems that may occur when you want to print data from 2 classes, one mother, one child. Indeed, when you create a function outside your classes with the mother as parameter and you send the child in arguments, it won't crash because of inheritance. But the function won't know that the type is the child type so you won't be able to specify something whenever you need.
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Person
+{
+  private:
+    std::string name;
+    int age;
+
+  public:
+    virtual void presentation() const;
+};
+
+class Student : public Person
+{
+  private:
+    std::string grade;
+
+  public:
+    virtual void presentation() const;
+
+};
+
+void display(Person const& p);
+void virtual_method();
+
+// in cpp
+void Student::presentation() const
+{
+  std::cout << "Student - " << *this << std::endl;
+}
+
+void Person::presentation() const
+{
+  std::cout << "Person - " << *this <<  std::endl;
+}
+
+void display(Person const& p)
+{
+  p.presentation();
+}
+\end{lstlisting} \vspace{5mm}
+
+If we hadn't specify \textbf{virtual} for the method, then our program would always print "Person - ...". Notice that \textbf{virtual} is only written in the .hpp file.
+
+\subsubsection{Abstract method}
+Sometimes you create a tree with the same method implemented in each child. It happens that the mother child isn't able to implement the method because there is no logic to do it but you want to keep the relation between each class. It's called abstract method. It not implemented into the mother class but it must be implemented in each child. 
+\\ To declare it, you need to write your function as follow : \\ \textbf{virtual type my\_function() const = 0;}
+
+\\ Thereby, you won't be able to create an instance of the abstract class (mother) because it would be a non-sense.
+
+\subsubsection{Static method}
+A static method is a method from a class that hasn't access to its attributes but there is still a relation between the function and the class. So you can't use a static method with an instance because it's directly usable as a function. Like \textbf{virtual}, you oly need to write \textbf{static} in the .hpp file. 
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Student : public Person
+{
+  private:
+    std::string grade;
+
+  public:
+    static void description();
+
+};
+
+void static_method();
+
+// in cpp
+void Student::description()
+{
+  std::cout << "A student is inside the school" << std::endl;
+}
+
+void static_method()
+{
+  Student::description();
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Friend method}
+You can use friend method when you have a method that isn't supposed to be used by the user. Indeed, if the user isn't supposed to use a method, then this method is better in private. But private also means that it's not accessible outside of the class. Friend method allow this use outside of the class without any problem. 
+
+\begin{lstlisting}[language=C++]
+// in hpp
+class Student : public Person
+{
+  private:
+    std::string grade;
+    friend void secret(Student& s);
+};
+
+void static_method();
+
+// in cpp
+void secret(Student& s)
+{
+  std::cout << "Secret attribute - " << s.grade << std::endl;
+}
+
+void friend_method()
+{
+  Student a;
+  secret(a);
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Inheritance}
+Inheritance allows us to define a class in terms of another class, which makes it easier to create and maintain an application. This also provides an opportunity to reuse the code functionality and fast implementation time. \\ You can simply create a derived class by changing the class like this : \textbf{class derived-class: access-specifier base-class}, access-specifier can be one of them : \textit{public, protected, or private}. \\ You can also have multiple inheritance by adding, more parent classes in base-class and separate them by a coma. \\ You can overload a method from the parent class with the same signature, it will overwrite it.
+
+\begin{lstlisting}[language=C++]
+class Student : public Person
+{
+  private:
+    std::string grade;
+
+  public:
+    Student();
+    Student(std::string name, int age, std::string grade);
+
+    std::string get_grade() const;
+
+};
+\end{lstlisting} \vspace{5mm}
 
 \newpage
 \section{Toolbox}
+
+\subsection{Operator}
+You can overload operator to add functionalities to your classes. These operators must be declared outside of the class. For example, you can implement comparison operators : \textbf{==, !=, <, >, <=, >=, ...}, arithmetic operators : \textbf{+, -, /, *, \%, ...}, shortcut operators  :\textbf{+=, -=, *=, /=, ...} or flow operators : \textbf{<<, >>, ...}.
+
+\subsubsection{Comparison operators}
+Comparison operators are used to compare the value of 2 classes that have often the same type but it can also be 2 different type with a logic between them.
+
+\vspace{5mm}
+
+\begin{lstlisting}[language=C++]
+\\ in hpp
+class XYZ
+{
+private:
+  int x;
+  int y;
+  int z;
+
+public:
+  XYZ();
+  XYZ(int x, int y, int z);
+
+  int get_x() const;
+  int get_y() const;
+  int get_z() const;
+};
+
+bool operator==(XYZ const& a, XYZ const& b);
+
+\\in cpp
+bool operator==(XYZ const& a, XYZ const& b)
+{
+  return (a.get_x() == b.get_x() && a.get_y() == b.get_y() && a.get_z() == b.get_z());
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Arithmetic operators}
+Arithmetic operators are used to do math with 2 classes that have often the same type but it can also be 2 different type with a logic between them.
+
+\vspace{5mm}
+
+\begin{lstlisting}[language=C++]
+\\ in hpp
+class XYZ
+{
+private:
+  int x;
+  int y;
+  int z;
+
+public:
+  XYZ();
+  XYZ(int x, int y, int z);
+
+  int get_x() const;
+  int get_y() const;
+  int get_z() const;
+};
+
+XYZ operator+(XYZ const& a, XYZ const& b);
+
+\\in cpp
+XYZ operator+(XYZ const& a, XYZ const& b)
+{
+  return XYZ(a.get_x() + b.get_x(), a.get_y() + b.get_y(), a.get_z() + b.get_z());
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Shortcut operators}
+Shortcut operators have the same function than arithmetic operators but they directly modify the value of the first class, whereas as with arithmetic operators you create a new object. Because of that, shortcut operators must be declared inside the class, whereas other operators are outside.
+
+\vspace{5mm}
+
+\begin{lstlisting}[language=C++]
+\\ in hpp
+class XYZ
+{
+private:
+  int x;
+  int y;
+  int z;
+
+public:
+  XYZ();
+  XYZ(int x, int y, int z);
+
+  int get_x() const;
+  int get_y() const;
+  int get_z() const;
+
+  XYZ& operator+=(const XYZ& b);
+
+};
+
+\\in cpp
+XYZ& XYZ::operator+=(const XYZ& b)
+{
+  x += b.x;
+  y += b.y;
+  z += b.z;
+
+  return *this;
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsubsection{Flow operator}
+C++ is powerful because you can also overload flow operators. Especially with the \textbf{<<} operator that simplify the reading of an object. It's similar to the \_\_str\_\_ dunder method in python. Then you can just print your object and it will be nice!
+
+\vspace{5mm}
+
+\begin{lstlisting}[language=C++]
+\\ in hpp
+class XYZ
+{
+private:
+  int x;
+  int y;
+  int z;
+
+public:
+  XYZ();
+  XYZ(int x, int y, int z);
+
+  int get_x() const;
+  int get_y() const;
+  int get_z() const;
+};
+
+std::ostream& operator<<(std::ostream& os, const XYZ& n);
+
+\\in cpp
+std::ostream& operator<<(std::ostream& os, const XYZ& n)
+{
+  os << "(";
+  os << n.get_x();
+  os << ';';
+  os << n.get_y();
+  os << ';';
+  os << n.get_z();
+  os << ")";
+  return os;
+}
+\end{lstlisting} \vspace{5mm}
+
+\subsection{Using}
+Using is a powerful keyword that allows the user to replace a potentially long name by a simple one more explicit.
+
+\begin{lstlisting}[language=C++]
+using strtab = std::vector<std::string>;
+\end{lstlisting} \vspace{5mm}
 
 \subsection{Increment and decrement}
 You can simply increment and decrement your variables by using \textbf{++} or \textbf{--}.
